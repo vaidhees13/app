@@ -1,0 +1,33 @@
+<h1> Role listing</h1>
+
+<table>
+
+  <tr>
+
+    <th>name</th>
+
+  </tr>
+
+  <% @role.each do |role| %>
+      <%= link_to 'New', new_role_path(role) %>
+      <tr>
+        <td><%= role.name %></td>
+
+
+
+        <td><%= link_to 'Edit', edit_role_path(role) %></td>
+        <td><%= link_to 'Delete', role_path(role),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Back', roles_path %>
+
+
+        </td>
+
+
+      </tr>
+
+  <% end %>
+
+
+</table>

@@ -1,0 +1,23 @@
+<h1>Role Page</h1>
+
+<%= form_for @role do |f| %>
+    <% if @role.errors.any? %>
+        <div class="error_messages">
+          <h2>Role is invalid</h2>
+          <ul>
+            <% for message in @role.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p class="form-group">
+      <%= f.label :name %>
+      <%=  f.select(:name, options_for_select([['ADMIN', 1], ['AUTHOR', 2]])) %>
+    </p>
+
+
+
+    <p class="button"><%= f.submit %></p>
+<% end %>
