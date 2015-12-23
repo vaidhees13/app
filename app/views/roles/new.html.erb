@@ -13,9 +13,11 @@
     <% end %>
 
     <p class="form-group">
-      <%= f.label :name %>
-      <%=  f.select(:name, options_for_select([['ADMIN', 1], ['AUTHOR', 2]])) %>
+      <%= f.label :role %>
+      <%= f.select :role, User_ids.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
     </p>
+
+
 
 
 
