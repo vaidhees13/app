@@ -1,5 +1,4 @@
 class RolesController < ApplicationController
-  before_filter :check_params
 
   def index
     @role = Role.all
