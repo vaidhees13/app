@@ -1,8 +1,18 @@
 class UsersController < ApplicationController
-
+  before_filter :check_params
 
   def index
     @user = User.all
+  end
+
+  def check_params
+    @current_user.role.name == ADMIN
+    if @user.role? :ADMIN
+      redirect_to :controller => "user" ,:action => "index"
+    else
+      render 'new'
+    end
+
   end
 
 
