@@ -19,13 +19,6 @@ class ApplicationController < ActionController::Base
     ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
  # end
 # end
-  def check_params
-    @current_user.role.name == ADMIN
-    if @user.role? :ADMIN
-    redirect_to :controller => "user" ,:action => "show"
-  else
-    render 'new'
-     end
-
-  end
+ #
+#
 end
