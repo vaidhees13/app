@@ -1,28 +1,15 @@
 class UsersController < ApplicationController
-  before_filter :check_params
+
+  before_action :current_user, :except => [:new, :create]
+  before_action :admin_only, :only => [:destroy]
 
   def index
     @user = User.all
   end
 
-  def check_params
-    @current_user.role.name == ADMIN
-    if @user.role? :ADMIN
-      redirect_to :controller => "user" ,:action => "index"
-    else
-      render 'new'
-    end
-
-  end
-
-
-
-
-
-
-
   def show
     @user = User.find(params[:id])
+    redirect_to :controller => "sessions",:action => "new"
   end
 
   def new
@@ -55,12 +42,14 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to @user
+    redirect_to root_url
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name,:email,:password,:password_confirmation,:role)
 
+  def user_params
+    params.require(:user).permit(:name,:email,:password,:password_confirmation,:role_id,:admin)
   end
+
 end
+
