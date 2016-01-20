@@ -1,0 +1,37 @@
+<div class="logo">
+  <img src="/images/242x82.png"> </img>
+</div>
+
+
+
+
+<div class="left">
+  <div class="menu-block">
+    <div class="horizontalmenu">
+      <ul>
+        <li><%= link_to 'Home', documents_index_path %></li>
+        <li><%= link_to 'Documents'%>
+          <ul>
+            <li><%= link_to 'Documents Create', documents_new_path %></li>
+            <li><%= link_to 'Documents Listing', documents_index_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Clients'%>
+          <ul>
+            <li><%= link_to 'Clients Create', clients_new_path %></li>
+            <li><%= link_to 'Clients Listing', clients_path %></li>
+          </ul>
+
+        </li>
+        <li><%= link_to 'Teams'%>
+          <ul>
+            <li><%= link_to 'Teams Create', teams_new_path %></li>
+            <li><%= link_to 'Teams Listing', teams_path %></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div><!--left-->
+
