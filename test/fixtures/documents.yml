@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  author: MyString
+  team_name: MyString
+  summary: MyString
+  ref_link: MyString
+  file_path: MyString
+  client_ids: 1
+
+two:
+  title: MyString
+  author: MyString
+  team_name: MyString
+  summary: MyString
+  ref_link: MyString
+  file_path: MyString
+  client_ids: 1
