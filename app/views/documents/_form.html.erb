@@ -1,0 +1,81 @@
+<img src="/images/242x82.png"> </img>
+
+
+<div class="signup_block">
+
+  <%#= form_for @person do |f| %>
+  <%= form_for @document ,  :html => { :multipart => true } do|f| %>
+
+      <div class="section_block" id="section_block">
+        <div class="login_content">
+          <div class="login-head">
+            <h1>Document Page</h1>
+          </div><!--login-head-->
+
+          <% if @document.errors.any? %>
+              <div class="error_messages">
+                <h2>Document is invalid</h2>
+                <ul>
+                  <% for message in @document.errors.full_messages %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :author %>
+            <%= f.text_field :author,:class => "username" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :summary %>
+            <%= f.text_field :summary,:class => "username" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :ref_link %>
+            <%= f.url_field :ref_link ,:class => "username"%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :team_name %>
+            <%=  f.select(:team_name, options_for_select([['CORE', 1], ['INFRASTRUCTURE', 2], ['IMPLEMENTATION',3],['DESIGN',4],['ADMIN',5]])) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :client_ids %>
+            <%#= f.select :client_ids, Client.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+            <%= collection_select(:document, :client_ids, Client.all , :id, :name, prompt: true) %>
+            <%#= f.select(:client_ids, Client.all.collect {|p| [ p.name, p.id ] }, { :prompt => "Please select"},
+                         { :multiple => true, :size => 5 }) %>
+          </div>
+          <div class="form-group">
+
+            <%= f.label :client_Name %>
+
+          </div>
+
+
+          <div>
+            <label for="upload_file">Upload File</label>
+                <%= file_field 'document', 'file1' %>
+          </div>
+          <div>
+            <label for="image_upload">image upload</label>
+            <%= file_field 'document', 'file2' %>
+          </div>
+
+          <div class="button"><%= f.submit %></div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+
