@@ -1,16 +1,29 @@
+<img src="/images/242x82.png"> </img>
 
 
-<h1>Log in</h1>
+<div class="signup_block">
 
-<%= form_tag sessions_path do %>
-    <p>
+  <%= form_tag sessions_path do %>
+
+      <div class="section_block" id="section_block">
+        <div class="login_content">
+          <div class="login-head">
+            <h1>Login Page</h1>
+          </div><!--login-head-->
+
+
+    <div class="form-group">
       <%= label_tag :email %><br />
       <%= text_field_tag :email, params[:email] %>
-    </p>
-    <p>
+    </div>
+    <div class="form-group">
       <%= label_tag :password %><br />
       <%= password_field_tag :password %>
-    </p>
-    <p class="button"><%= submit_tag "Log in" %></p>
-<% end %>
+    </div>
+    <div class="button"><%= submit_tag "Log in" %></div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
 
