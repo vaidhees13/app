@@ -1,0 +1,121 @@
+<img src="/images/242x82.png"> </img>
+
+
+<style>
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+      }
+
+      li {
+          float: left;
+      }
+
+      li a {
+          display: inline-block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+      }
+
+      li a:hover {
+          background-color: #111;
+      }
+  </style>
+
+
+<ul>
+  <li><a class="active" href="/log_in">Home</a></li>
+  <li><%= link_to 'Documents', documents_index_path %></li>
+  <ul style="display:none;">
+    <li id="index">
+      <a class="contact" title="DocumentIndex" href="/documents/index">Documents index</a>
+    </li>
+    <li id="new">
+      <a class="contact" title="DocumentsNew" href="/documents/new">documents new</a>
+    </li>
+
+    <!--<%#if session[:role]=="USER" %>
+<li id="view_others_profile">
+<a class="contact" title="" href="/employee/view_others_profile">View others profile</a>
+</li>
+<%#end%>-->
+  </ul>
+  </li>
+  <li><a href="#/Clients/index">Clients</a></li>
+  <li><a href="#/Teams/index">Teams</a></li>
+</ul>
+
+
+
+
+
+<h1> Document listing</h1>
+<%# title "Documents" %>
+
+
+<div class="signup_block">
+
+
+  <%= form_tag documents_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search",:author => nil %>
+      </p>
+  <% end %>
+
+
+</div >
+
+<div >
+
+  <table>
+
+  <tr >
+
+    <th>title</th>
+    <th>author</th>
+    <th>summary</th>
+    <th>ref_link</th>
+    <th>team_name</th>
+    <th>file_name</th>
+
+
+
+  </tr>
+
+  <% @document.each do |document| %>
+      <tr >
+        <td ><%= document.title %></td>
+        <td ><%= document.author  %></td>
+        <td ><%= document.summary %></td>
+        <td ><%= document.ref_link %></td>
+        <td ><%= document.team_name  %></td>
+        <td ><%= document.file_name  %></td>
+
+
+        <td ><%= link_to 'Edit', edit_document_path(document) %></td>
+        <td ><%= link_to 'Delete', document_path(document),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Back', documents_path %>
+
+        </td>
+        <td ><%= button_to 'Download', "/documents/download_file?id=#{document.id}", :class => "download_file" %></td>
+
+
+
+      </tr>
+
+  <% end %>
+
+</table>
+
+
+</div>
+
+
