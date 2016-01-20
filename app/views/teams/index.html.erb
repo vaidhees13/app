@@ -1,0 +1,131 @@
+<style type="text/css" media="screen">
+    .logo{width:100%;float:left;}
+    .logo img{margin:0px auto;}
+
+    .left{width:100%;float:left;background-color:white;}
+    .menu-block{width:100%;float:left;margin-bottom:30px;}
+    .horizontalmenu{
+        width:100%;
+        float:left;
+        background-color:#4285f4;
+    }
+    .horizontalmenu ul {
+        list-style-type:none;
+    }
+    .horizontalmenu li {
+        position:relative; padding:5px 10px;font-size:16px;background-color:#4285f4;
+    }
+
+    .horizontalmenu li a{
+        color:#fff;
+    }
+
+    .horizontalmenu li ul {
+        background-color:#4285f4;
+        border:1px solid #000;
+        display:none;
+        position:absolute;
+        left:100px;
+        height:auto;
+        min-width:130px;
+        z-index:10;
+    }
+    .horizontalmenu li:hover > ul{
+        display:block;
+    }
+    .horizontalmenu li > ul li{
+        font-size:14px;
+        display:block;
+        border-bottom:1px solid #000;
+    }
+
+    .horizontalmenu li > ul li:last-child{
+        border-bottom:none;
+    }
+
+    .right{
+        width:70%;float:left;
+        background-color:white;
+    }
+</style>
+
+<div class="logo">
+  <img src="/images/242x82.png"> </img>
+</div>
+
+<div class="left">
+  <div class="menu-block">
+    <div class="horizontalmenu">
+      <ul>
+        <li><%= link_to 'Home', teams_path %></li>
+        <li><%= link_to 'Documents'%>
+          <ul>
+            <li><%= link_to 'Documents Create', documents_new_path %></li>
+            <li><%= link_to 'Documents Listing', documents_index_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Clients'%>
+          <ul>
+            <li><%= link_to 'Clients Create', clients_new_path %></li>
+            <li><%= link_to 'Clients Listing', clients_path %></li>
+          </ul>
+
+        </li>
+        <li><%= link_to 'Teams'%>
+          <ul>
+            <li><%= link_to 'Teams Create', teams_new_path %></li>
+            <li><%= link_to 'Teams Listing', teams_path %></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div><!--left-->
+
+
+<h1> Team listing</h1>
+<div class="signup_block">
+
+<%= form_tag teams_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search",:name => nil %>
+      </p>
+  <% end %>
+
+
+
+<table>
+
+  <tr>
+
+    <th>name</th>
+    <th>description</th>
+
+
+  </tr>
+
+  <% @team.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.description  %></td>
+
+
+
+        <td><%= link_to 'Edit', edit_team_path(team) %></td>
+        <td><%= link_to 'Delete', team_path(team),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+
+
+        </td>
+
+
+      </tr>
+
+  <% end %>
+
+
+</table>
+</div>
