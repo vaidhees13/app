@@ -7,10 +7,18 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.where(:id => session[:user_id]).first if session[:user_id]
   end
 
-# def check_params
+  def admin_only
+    current_user
+    if @current_user.role.id !=1
+      redirect_to log_in_path
+    end
+  end
+
+
+  # def check_params
  # if user_signed_in?
   #  super
  # else
