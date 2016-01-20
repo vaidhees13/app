@@ -1,0 +1,119 @@
+
+
+
+
+<div class="logo">
+  <img src="/images/242x82.png"> </img>
+</div>
+
+
+
+
+<div class="left">
+  <div class="menu-block">
+    <div class="horizontalmenu">
+      <ul>
+        <li><%= link_to 'Home', documents_index_path %></li>
+        <li><%= link_to 'Documents'%>
+          <ul>
+            <li><%= link_to 'Documents Create', documents_new_path %></li>
+            <li><%= link_to 'Documents Listing', documents_index_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Clients'%>
+          <ul>
+            <li><%= link_to 'Clients Create', clients_new_path %></li>
+            <li><%= link_to 'Clients Listing', clients_path %></li>
+          </ul>
+
+        </li>
+        <li><%= link_to 'Teams'%>
+          <ul>
+            <li><%= link_to 'Teams Create', teams_new_path %></li>
+            <li><%= link_to 'Teams Listing', teams_path %></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div><!--left-->
+
+
+
+
+
+
+
+
+
+
+
+<div class="right">
+<h1> Document listing</h1>
+<%# title "Documents" %>
+
+
+<div class="signup_block">
+
+
+  <%= form_tag documents_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search",:author => nil %>
+      </p>
+  <% end %>
+
+
+</div >
+
+<div >
+
+  <table class="table-content">
+
+    <tr >
+
+      <th>title</th>
+      <th>author</th>
+      <th>summary</th>
+      <th>ref_link</th>
+      <th>team_name</th>
+      <th>file_name</th>
+      <th>fileimg_path</th>
+
+
+
+    </tr>
+
+    <% @document.each do |document| %>
+        <tr >
+          <td ><%= document.title %></td>
+          <td ><%= document.author  %></td>
+          <td ><%= document.summary %></td>
+          <td ><%= document.ref_link %></td>
+          <td ><%= document.team_name  %></td>
+          <td ><%= document.file_name  %></td>
+          <td ><%= document.fileimg_path  %></td>
+
+
+          <td ><%= link_to 'Edit', edit_document_path(document) %></td>
+          <td ><%= link_to 'Delete', document_path(document),
+                           method: :delete,
+                           data: { confirm: 'Are you sure?' } %>
+
+
+          </td>
+          <td ><%= button_to 'Download', "/documents/download_file?id=#{document.id}", :class => "download_file" %></td>
+
+
+
+        </tr>
+
+    <% end %>
+
+  </table>
+
+
+</div>
+</div><!--right-->
+
