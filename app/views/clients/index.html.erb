@@ -1,0 +1,84 @@
+
+
+<div class="logo">
+  <img src="/images/242x82.png"> </img>
+</div>
+
+<div class="left">
+  <div class="menu-block">
+    <div class="horizontalmenu">
+      <ul>
+        <li><%= link_to 'Home', clients_path %></li>
+        <li><%= link_to 'Documents'%>
+          <ul>
+            <li><%= link_to 'Documents Create', documents_new_path %></li>
+            <li><%= link_to 'Documents Listing', documents_index_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Clients'%>
+          <ul>
+            <li><%= link_to 'Clients Create', clients_new_path %></li>
+            <li><%= link_to 'Clients Listing', clients_path %></li>
+          </ul>
+
+        </li>
+        <li><%= link_to 'Teams'%>
+          <ul>
+            <li><%= link_to 'Teams Create', teams_new_path %></li>
+            <li><%= link_to 'Teams Listing', teams_path %></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div><!--left-->
+
+
+
+<h1> client listing</h1>
+
+
+
+<div class="signup_block">
+
+
+  <%= form_tag clients_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search",:name => nil %>
+      </p>
+  <% end %>
+
+
+</div >
+<table>
+
+  <tr>
+
+    <th>name</th>
+    <th>site</th>
+
+
+  </tr>
+
+  <% @client.each do |client| %>
+      <tr>
+        <td><%= client.name %></td>
+        <td><%= client.site  %></td>
+
+
+        <td><%= link_to 'Edit', edit_client_path(client) %></td>
+        <td><%= link_to 'Delete', client_path(client),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+
+        </td>
+
+
+      </tr>
+
+  <% end %>
+
+
+</table>
