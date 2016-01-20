@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'teams/new'
+  get 'teams/edit'
+
+
+  get 'clients/new'
+  get 'clients/edit'
+
+
+  get 'documents/new'
+  get 'documents/edit'
+  get 'documents/index'
+
+  post "documents/create" => "documents#create"
+
+
+  get 'documents/check'
   get 'roles/new'
 
   get 'sessions/new'
@@ -9,15 +25,23 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
 
   get "sign_up" => "users#new", :as => "sign_up"
-  root :to => "users#new"
+  #get "documents_path" =>"documents#index", :as => "documents_path"
+  post "documents/download_file" => "documents#download_file"
+ # root :to => "users#new"
   resources :users
   resources :sessions
   resources :roles
+  resources :documents
+  resources :teams
+  resources :clients
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'sessions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
